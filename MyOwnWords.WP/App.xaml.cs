@@ -29,6 +29,11 @@ namespace MyOwnWords.WP
         private TransitionCollection transitions;
 
         /// <summary>
+        /// Path to database.
+        /// </summary>
+        public static string DbPath = Path.Combine(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "MyOwnWordsDB_v1.sqlite"));
+
+        /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>

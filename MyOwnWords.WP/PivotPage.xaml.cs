@@ -1,4 +1,5 @@
 ﻿using MyOwnWords.WP.Common;
+using MyOwnWords.WP.DAL;
 using MyOwnWords.WP.Data;
 using System;
 using System.Collections.Generic;
@@ -164,5 +165,11 @@ namespace MyOwnWords.WP
         }
 
         #endregion
+
+        private void appBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Seed seed = new Seed();
+            seed.SampleData();
+        }
     }
 }
