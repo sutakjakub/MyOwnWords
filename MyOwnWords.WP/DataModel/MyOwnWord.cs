@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MyOwnWords.WP.DAL.SQLite;
 using SQLiteNetExtensions.Attributes;
+using SQLite.Net.Attributes;
 
 namespace MyOwnWords.WP.DataModel
 {
     /// <summary>
     /// Class represents MyOwnWord in application.
     /// </summary>
+    [Table("MyOwnWord")]
     public class MyOwnWord
     {
         /// <summary>
@@ -50,15 +51,21 @@ namespace MyOwnWords.WP.DataModel
         public DateTime Updated { get; set; }
 
         /// <summary>
+        /// Foreign key for User.
+        /// </summary>
+        [ForeignKey(typeof(User))]
+        public int UserId { get; set; }
+
+        /// <summary>
         /// Every word has got owner.
         /// </summary>
-        [ManyToOne]
+        [OneToOne]
         public User User { get; set; }
 
         /// <summary>
         /// Every word has got 0..n pictures.
         /// </summary>
-        [OneToMany]
-        public List<Picture> Pictures { get; set; }
+        //[OneToMany]
+        //public List<Picture> Pictures { get; set; }
     }
 }

@@ -20,6 +20,7 @@ using SQLite;
 
 namespace SQLiteNetExtensions.Extensions
 {
+    using SQLite.Net;
     using ObjectCache = Dictionary<string, Dictionary<object, object>>;
 
     public static class ReadOperations

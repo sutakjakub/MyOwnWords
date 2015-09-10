@@ -1,11 +1,9 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\development\myownwords.wp\myownwords.wp\obj\x86\debug\intermediatexaml\myownwords.wp.exe" HashGuid="32bc8e2d-becd-0c6f-9b7e-1c06a540eb33" />
+    <LocalAssembly PathName="d:\development\myownwords.wp\myownwords.wp\obj\x86\debug\intermediatexaml\myownwords.wp.exe" HashGuid="dd4df8ca-90fa-d6ce-dc00-4f9ad181b0e7" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
     <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\newtonsoft.json.6.0.8\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\newtonsoft.json.dll" HashGuid="a6815119-bde8-2bdd-8acf-133f32c00b94" />
-    <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\sqlite.core.windowsphone.3.8.11.158\lib\wpa81-hidden\x86\sqlite.core.winmd" HashGuid="a2a59da6-0335-c907-9ae5-91e2cd0b0acd" />
     <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\sqlite.net-pcl.3.0.5\lib\portable-win81+wpa81\sqlite.net.dll" HashGuid="4840b8e3-dc66-6793-97b8-8abc180963b6" />
     <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\sqlite.net-pcl.3.0.5\lib\portable-win81+wpa81\sqlite.net.platform.winrt.dll" HashGuid="38f34186-7ad1-6b9f-3805-295b67ec275e" />
-    <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\sqlitenetextensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+monoandroid1+monotouch1\sqlitenetextensions.dll" HashGuid="90293966-e53f-2b6b-fe23-703d69bb6086" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

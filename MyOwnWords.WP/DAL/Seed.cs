@@ -1,5 +1,6 @@
-﻿using MyOwnWords.WP.DAL.SQLite;
-using MyOwnWords.WP.DataModel;
+﻿using MyOwnWords.WP.DataModel;
+using SQLite.Net;
+using SQLite.Net.Platform.WinRT;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,30 +24,39 @@ namespace MyOwnWords.WP.DAL
         /// </summary>
         public void SampleData()
         {
-            CreateDatabaseIfNotExists(App.DbPath);
-            var user = GetUser("sutak.jakub@gmail.com", "Jey");
+            CreateDatabaseIfNotExists(true);
 
-            using (var dbConn = new SQLiteConnection(App.DbPath))
-            { 
+            using (var dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
+            {
+                var user = GetUser("sutak.jakub@gmail.com", "Jey");
+                int userId = -1;
+
                 dbConn.RunInTransaction(() =>
                 {
-                    dbConn.Insert(user);
+                    userId = dbConn.Insert(user);
+                });
+
+                var myOwnWord = GetMyOwnWord(userId, "Hello");
+                int myOwnWordId = -1;
+
+                dbConn.RunInTransaction(() =>
+                {
+                    myOwnWordId = dbConn.Insert(myOwnWord);
                 });
             }
-
-            //var myOwnWord = GetMyOwnWord();
         }
 
-        private void CreateDatabaseIfNotExists(string dbPath)
+        private void CreateDatabaseIfNotExists(bool drop = false)
         {
             try
             {
                 var store = Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(App.DbPath);
-                if (store != null)
+                if (store != null && drop)
                 {
-                    using (dbConn = new SQLiteConnection(dbPath))
+                    using (dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
                     {
                         dbConn.CreateTable<User>();
+                        dbConn.CreateTable<MyOwnWord>();
                     }
                 }
                 else
@@ -79,13 +89,17 @@ namespace MyOwnWords.WP.DAL
             return result;
         }
 
-        //private MyOwnWord GetMyOwnWord()
-        //{
-        //    MyOwnWord result = new MyOwnWord();
+        private MyOwnWord GetMyOwnWord(int userId, string word)
+        {
+            MyOwnWord result = new MyOwnWord();
 
-        //    result.Created = DateTime.UtcNow;
-        //    result.Updated = DateTime.UtcNow;
-        //    result.User = UserId
-        //}
+            result.MyOwnWordUID = Guid.NewGuid().ToString();
+            result.Created = DateTime.UtcNow;
+            result.Updated = DateTime.UtcNow;
+            result.WordName = word;
+            result.UserId = userId;
+
+            return result;
+        }
     }
 }

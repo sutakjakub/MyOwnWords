@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite.Net.Attributes;
 #if USING_MVVMCROSS
 using IgnoreAttribute = Cirrious.MvvmCross.Community.Plugins.Sqlite.IgnoreAttribute;
 #elif PCL

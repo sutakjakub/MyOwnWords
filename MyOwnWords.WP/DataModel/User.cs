@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MyOwnWords.WP.DAL.SQLite;
 using SQLiteNetExtensions.Attributes;
+using SQLite.Net.Attributes;
 
 namespace MyOwnWords.WP.DataModel
 {
     /// <summary>
     /// This class represents User in application.
     /// </summary>
+    [Table("User")]
     public class User
     {
         /// <summary>
@@ -58,7 +59,7 @@ namespace MyOwnWords.WP.DataModel
         /// <summary>
         /// Users' every added word and his dependency (as record, picture and so on).
         /// </summary>
-        //[OneToMany]
-        //public List<MyOwnWord> MyOwnWords {get;set;}
+        //[OneToMany(CascadeOperations = CascadeOperation.All)]
+        //public List<MyOwnWord> MyOwnWords { get; set; }
     }
 }
