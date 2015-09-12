@@ -54,12 +54,12 @@ namespace MyOwnWords.WP.DataModel
         /// Foreign key for User.
         /// </summary>
         [ForeignKey(typeof(User))]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Every word has got owner.
         /// </summary>
-        [OneToOne]
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public User User { get; set; }
 
         /// <summary>

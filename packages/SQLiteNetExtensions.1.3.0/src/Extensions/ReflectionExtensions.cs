@@ -6,7 +6,6 @@ using System.Reflection;
 using SQLiteNetExtensions.Attributes;
 using System.Linq.Expressions;
 using System.Collections.ObjectModel;
-using SQLite.Net.Attributes;
 
 #if USING_MVVMCROSS
 using Cirrious.MvvmCross.Community.Plugins.Sqlite;

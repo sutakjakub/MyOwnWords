@@ -1,5 +1,7 @@
 ﻿using MyOwnWords.WP.DataModel;
 using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
+using SQLite.Net.Async;
 using SQLite.Net.Platform.WinRT;
 using System;
 using System.Collections.Generic;
@@ -41,8 +43,45 @@ namespace MyOwnWords.WP.DAL
 
                 dbConn.RunInTransaction(() =>
                 {
-                    myOwnWordId = dbConn.Insert(myOwnWord);
+                    dbConn.InsertWithChildren(myOwnWord, true);
                 });
+
+                var myOwnWord2 = GetMyOwnWord(userId, "Man");
+                int myOwnWord2Id = -1;
+
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.InsertWithChildren(myOwnWord2);
+                });
+
+                var picture = GetPicture(myOwnWordId);
+                var pictureId = -1;
+
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.InsertWithChildren(picture);
+                });
+
+                var picture2 = GetPicture(myOwnWordId);
+                var picture2Id = -1;
+
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.InsertWithChildren(picture2);
+                });
+
+                var picture3 = GetPicture(myOwnWord2Id);
+                var picture3Id = -1;
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.InsertWithChildren(picture3);
+                });
+
+                //test for getting
+                var entities = dbConn.GetAllWithChildren<MyOwnWord>();
+                var maping = dbConn.GetMapping<MyOwnWord>();
+
+                
             }
         }
 
@@ -56,6 +95,7 @@ namespace MyOwnWords.WP.DAL
                     using (dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
                     {
                         dbConn.CreateTable<User>();
+                        dbConn.CreateTable<Picture>();
                         dbConn.CreateTable<MyOwnWord>();
                     }
                 }
@@ -97,7 +137,24 @@ namespace MyOwnWords.WP.DAL
             result.Created = DateTime.UtcNow;
             result.Updated = DateTime.UtcNow;
             result.WordName = word;
-            result.UserId = userId;
+            result.UserID = userId;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Returns filled sample Picture.
+        /// </summary>
+        /// <param name="myOwnWordId">ID of MyOwnWord</param>
+        /// <returns></returns>
+        private Picture GetPicture(int myOwnWordId)
+        {
+            Picture result = new Picture();
+
+            result.PictureUID = Guid.NewGuid().ToString();
+            result.Created = DateTime.UtcNow;
+            result.Data = new byte[] { 0, 1 };
+            result.MyOwnWordId = myOwnWordId;
 
             return result;
         }

@@ -59,7 +59,7 @@ namespace MyOwnWords.WP.DataModel
         /// <summary>
         /// Users' every added word and his dependency (as record, picture and so on).
         /// </summary>
-        //[OneToMany(CascadeOperations = CascadeOperation.All)]
-        //public List<MyOwnWord> MyOwnWords { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<MyOwnWord> MyOwnWords { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,5 +40,17 @@ namespace MyOwnWords.WP.DataModel
         /// </summary>
         [NotNull]
         public byte[] Data { get; set; }
+
+        /// <summary>
+        /// Foreign key for MyOwnWord.
+        /// </summary>
+        [ForeignKey(typeof(MyOwnWord))]
+        public int MyOwnWordId { get; set; }
+
+        /// <summary>
+        /// Picture belong only one MyOwnWord
+        /// </summary>
+        //[ManyToOne(CascadeOperations = CascadeOperation.All)]
+        //public MyOwnWord MyOwnWord { get; set; }
     }
 }

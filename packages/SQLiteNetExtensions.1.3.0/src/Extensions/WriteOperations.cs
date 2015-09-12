@@ -17,8 +17,6 @@ using SQLite;
 #endif
 using SQLiteNetExtensions.Attributes;
 using SQLiteNetExtensions.Extensions.TextBlob;
-using SQLite.Net;
-using SQLite.Net.Attributes;
 
 namespace SQLiteNetExtensions.Extensions
 {
