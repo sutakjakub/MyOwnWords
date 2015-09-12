@@ -38,50 +38,49 @@ namespace MyOwnWords.WP.DAL
                     userId = dbConn.Insert(user);
                 });
 
-                var myOwnWord = GetMyOwnWord(userId, "Hello");
-                int myOwnWordId = -1;
-
-                dbConn.RunInTransaction(() =>
+                for (int i = 0; i < 10; i++)
                 {
-                    dbConn.InsertWithChildren(myOwnWord, true);
-                });
+                    dbConn.Insert(GetPicture(3));
+                }
 
-                var myOwnWord2 = GetMyOwnWord(userId, "Man");
-                int myOwnWord2Id = -1;
 
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.InsertWithChildren(myOwnWord2);
-                });
+                //var myOwnWord2 = GetMyOwnWord(userId, "Man");
+                //int myOwnWord2Id = -1;
 
-                var picture = GetPicture(myOwnWordId);
-                var pictureId = -1;
+                //dbConn.RunInTransaction(() =>
+                //{
+                //    dbConn.InsertWithChildren(myOwnWord2);
+                //});
 
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.InsertWithChildren(picture);
-                });
+                //var picture = GetPicture(myOwnWordId);
+                //var pictureId = -1;
 
-                var picture2 = GetPicture(myOwnWordId);
-                var picture2Id = -1;
+                //dbConn.RunInTransaction(() =>
+                //{
+                //    dbConn.InsertWithChildren(picture);
+                //});
 
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.InsertWithChildren(picture2);
-                });
+                //var picture2 = GetPicture(myOwnWordId);
+                //var picture2Id = -1;
 
-                var picture3 = GetPicture(myOwnWord2Id);
-                var picture3Id = -1;
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.InsertWithChildren(picture3);
-                });
+                //dbConn.RunInTransaction(() =>
+                //{
+                //    dbConn.InsertWithChildren(picture2);
+                //});
+
+                //var picture3 = GetPicture(myOwnWord2Id);
+                //var picture3Id = -1;
+                //dbConn.RunInTransaction(() =>
+                //{
+                //    dbConn.InsertWithChildren(picture3);
+                //});
 
                 //test for getting
-                var entities = dbConn.GetAllWithChildren<MyOwnWord>();
-                var maping = dbConn.GetMapping<MyOwnWord>();
+                //var e = dbConn.GetWithChildren<MyOwnWord>(myOwnWord.MyOwnWordID);
 
-                
+                var u = dbConn.GetWithChildren<User>(3);
+                var e = dbConn.GetWithChildren<MyOwnWord>(3);
+
             }
         }
 
@@ -95,7 +94,7 @@ namespace MyOwnWords.WP.DAL
                     using (dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
                     {
                         dbConn.CreateTable<User>();
-                        dbConn.CreateTable<Picture>();
+                        dbConn.CreateTable<Photo>();
                         dbConn.CreateTable<MyOwnWord>();
                     }
                 }

@@ -28,6 +28,14 @@ namespace MyOwnWords.WP.DataModel
         public string MyOwnWordUID { get; set; }
 
         /// <summary>
+        /// Created date/time.
+        /// Cannot be null.
+        /// Every datetime is in UTC format.
+        /// </summary>
+        [NotNull]
+        public DateTime Created { get; set; }
+
+        /// <summary>
         /// Word name with maximum length of 100 characters.
         /// Cannot be null.
         /// </summary>
@@ -35,12 +43,9 @@ namespace MyOwnWords.WP.DataModel
         public string WordName { get; set; }
 
         /// <summary>
-        /// Created date/time.
-        /// Cannot be null.
-        /// Every datetime is in UTC format.
+        /// Translate for this word.
         /// </summary>
-        [NotNull]
-        public DateTime Created { get; set; }
+        public string Translate { get; set; }
 
         /// <summary>
         /// Updated date/time.
@@ -54,18 +59,24 @@ namespace MyOwnWords.WP.DataModel
         /// Foreign key for User.
         /// </summary>
         [ForeignKey(typeof(User))]
-        public int UserID { get; set; }
+        public int UserID{ get; set; }
 
         /// <summary>
         /// Every word has got owner.
         /// </summary>
-        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        [ManyToOne]
         public User User { get; set; }
+
+        /// <summary>
+        /// Every word has got 0..n Photos.
+        /// </summary>
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Photo> Pictures { get; set; }
 
         /// <summary>
         /// Every word has got 0..n pictures.
         /// </summary>
-        //[OneToMany]
-        //public List<Picture> Pictures { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Recording> Recordings { get; set; }
     }
 }

@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace MyOwnWords.WP.DataModel
 {
     /// <summary>
-    /// This class represents Picture for MyOwnWord.
+    /// This class represents Sentence for MyOwnWord.
     /// </summary>
-    public class Picture
+    public class Sentence
     {
         /// <summary>
         /// Identificator
         /// </summary>
         [PrimaryKey, AutoIncrement]
-        public int PictureID { get; set; }
+        public int SentenceID { get; set; }
 
         /// <summary>
         /// Unique identificator.
@@ -25,7 +25,7 @@ namespace MyOwnWords.WP.DataModel
         /// GUID used.
         /// </summary>
         [MaxLength(36), Unique, NotNull]
-        public string PictureUID { get; set; }
+        public string SentenceUID { get; set; }
 
         /// <summary>
         /// Created date/time.
@@ -36,10 +36,9 @@ namespace MyOwnWords.WP.DataModel
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// Bytes of picture.
+        /// String of sentences for determined MyOwnWord.
         /// </summary>
-        [NotNull]
-        public byte[] Data { get; set; }
+        public string Translate { get; set; }
 
         /// <summary>
         /// Foreign key for MyOwnWord.
@@ -48,9 +47,9 @@ namespace MyOwnWords.WP.DataModel
         public int MyOwnWordId { get; set; }
 
         /// <summary>
-        /// Picture belong only one MyOwnWord
+        /// Sentence belong only one MyOwnWord
         /// </summary>
-        //[ManyToOne(CascadeOperations = CascadeOperation.All)]
-        //public MyOwnWord MyOwnWord { get; set; }
+        [ManyToOne]
+        public MyOwnWord MyOwnWord { get; set; }
     }
 }

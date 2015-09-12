@@ -1,6 +1,6 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\development\myownwords.wp\myownwords.wp\obj\x86\debug\intermediatexaml\myownwords.wp.exe" HashGuid="09cf2a06-4211-d5b0-686a-edc76e5cd084" />
+    <LocalAssembly PathName="d:\development\myownwords.wp\myownwords.wp\obj\x86\debug\intermediatexaml\myownwords.wp.exe" HashGuid="0f64b8a5-cf9a-daea-f51a-44c95b259bb1" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
     <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\newtonsoft.json.6.0.8\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\newtonsoft.json.dll" HashGuid="a6815119-bde8-2bdd-8acf-133f32c00b94" />
     <ReferenceAssembly PathName="d:\development\myownwords.wp\packages\sqlite.core.windowsphone.3.8.11.158\lib\wpa81-hidden\x86\sqlite.core.winmd" HashGuid="a2a59da6-0335-c907-9ae5-91e2cd0b0acd" />
