@@ -31,7 +31,7 @@ namespace MyOwnWords.WP
         /// <summary>
         /// Path to database.
         /// </summary>
-        public static string DbPath = Path.Combine(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "MyOwnWordsDB_v1.sqlite"));
+        public static string DbPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "MyOwnWordsDB_v1.sqlite");
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
