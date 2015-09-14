@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyOwnWords.WP.Extensions;
+using Windows.Storage;
 
 namespace MyOwnWords.WP.DAL
 {
@@ -21,26 +23,34 @@ namespace MyOwnWords.WP.DAL
         /// </summary>
         private SQLiteConnection dbConn;
 
+        private bool DropDatabase { get; set; }
+
+        /// <summary>
+        /// Overloaded constructor.
+        /// </summary>
+        /// <param name="_dropDatabase">If you want drop and create database then true. Default is false.</param>
+        public Seed(bool _dropDatabase = false)
+        {
+            this.DropDatabase = _dropDatabase;
+        }
+
         /// <summary>
         /// Generating sample data
         /// </summary>
         public void SampleData()
         {
-            CreateDatabaseIfNotExists(true);
+            CreateDatabaseIfNotExists();
 
             using (var dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
             {
                 var user = GetUser("sutak.jakub@gmail.com", "Jey");
                 int userId = -1;
 
-                dbConn.RunInTransaction(() =>
-                {
-                    userId = dbConn.Insert(user);
-                });
+                userId = dbConn.Insert(user);
 
                 for (int i = 0; i < 10; i++)
                 {
-                    dbConn.Insert(GetPicture(3));
+                    dbConn.Insert(GetPhoto(3));
                 }
 
 
@@ -52,27 +62,27 @@ namespace MyOwnWords.WP.DAL
                 //    dbConn.InsertWithChildren(myOwnWord2);
                 //});
 
-                //var picture = GetPicture(myOwnWordId);
-                //var pictureId = -1;
+                //var Photo = GetPhoto(myOwnWordId);
+                //var PhotoId = -1;
 
                 //dbConn.RunInTransaction(() =>
                 //{
-                //    dbConn.InsertWithChildren(picture);
+                //    dbConn.InsertWithChildren(Photo);
                 //});
 
-                //var picture2 = GetPicture(myOwnWordId);
-                //var picture2Id = -1;
+                //var Photo2 = GetPhoto(myOwnWordId);
+                //var Photo2Id = -1;
 
                 //dbConn.RunInTransaction(() =>
                 //{
-                //    dbConn.InsertWithChildren(picture2);
+                //    dbConn.InsertWithChildren(Photo2);
                 //});
 
-                //var picture3 = GetPicture(myOwnWord2Id);
-                //var picture3Id = -1;
+                //var Photo3 = GetPhoto(myOwnWord2Id);
+                //var Photo3Id = -1;
                 //dbConn.RunInTransaction(() =>
                 //{
-                //    dbConn.InsertWithChildren(picture3);
+                //    dbConn.InsertWithChildren(Photo3);
                 //});
 
                 //test for getting
@@ -84,16 +94,39 @@ namespace MyOwnWords.WP.DAL
             }
         }
 
-        private void CreateDatabaseIfNotExists(bool drop = false)
+        private async void DeleteDatabase()
+        {
+            StorageFile file = null;
+            try
+            {
+                file = await ApplicationData.Current.LocalFolder.GetFileAsync(App.DbPath);
+                await file.DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                file = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(App.DbPath);
+            }
+            
+        }
+
+        private void CreateDatabaseIfNotExists()
         {
             try
             {
+                if (DropDatabase)
+                {
+                    DeleteDatabase();
+                }
+
                 var store = Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(App.DbPath);
-                if (store != null && drop)
+
+                if (store != null)
                 {
                     using (dbConn = new SQLiteConnection(new SQLitePlatformWinRT(), App.DbPath))
                     {
                         dbConn.CreateTable<User>();
+                        dbConn.CreateTable<Sentence>();
+                        dbConn.CreateTable<Recording>();
                         dbConn.CreateTable<Photo>();
                         dbConn.CreateTable<MyOwnWord>();
                     }
@@ -142,15 +175,15 @@ namespace MyOwnWords.WP.DAL
         }
 
         /// <summary>
-        /// Returns filled sample Picture.
+        /// Returns filled sample Photo.
         /// </summary>
         /// <param name="myOwnWordId">ID of MyOwnWord</param>
         /// <returns></returns>
-        private Picture GetPicture(int myOwnWordId)
+        private Photo GetPhoto(int myOwnWordId)
         {
-            Picture result = new Picture();
+            Photo result = new Photo();
 
-            result.PictureUID = Guid.NewGuid().ToString();
+            result.PhotoUID = Guid.NewGuid().ToString();
             result.Created = DateTime.UtcNow;
             result.Data = new byte[] { 0, 1 };
             result.MyOwnWordId = myOwnWordId;

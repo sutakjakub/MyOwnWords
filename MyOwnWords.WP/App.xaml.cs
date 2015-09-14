@@ -29,7 +29,7 @@ namespace MyOwnWords.WP
         private TransitionCollection transitions;
 
         /// <summary>
-        /// Path to database.
+        /// Path with name of database.
         /// </summary>
         public static string DbPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "mow.db3");
 
