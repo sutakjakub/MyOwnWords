@@ -168,8 +168,15 @@ namespace MyOwnWords.WP
 
         private void appBarButton_Click(object sender, RoutedEventArgs e)
         {
-            Seed seed = new Seed(_dropDatabase: true);
-            seed.SampleData();
+            Seed seed = new Seed();
+            try
+            {
+                seed.SampleData();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

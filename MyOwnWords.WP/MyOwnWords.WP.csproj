@@ -100,6 +100,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="DAL\Seed.cs" />
+    <Compile Include="DataModel\MowListItem.cs" />
     <Compile Include="DataModel\MyOwnWord.cs" />
     <Compile Include="DataModel\Photo.cs" />
     <Compile Include="DataModel\Recording.cs" />
@@ -128,6 +129,7 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Content Include="SQL files\vw_mowlist.sql" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

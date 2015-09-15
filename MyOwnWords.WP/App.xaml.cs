@@ -31,7 +31,8 @@ namespace MyOwnWords.WP
         /// <summary>
         /// Path with name of database.
         /// </summary>
-        public static string DbPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "mow.db3");
+        public static string DbPath = Path.Combine(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, DbName));
+        public const string DbName = "mow.db3";
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

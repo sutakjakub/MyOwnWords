@@ -75,6 +75,9 @@
     <AppxPackagedFile Include="D:\Development\MyOwnWords.WP\MyOwnWords.WP\Common\ReadMe.txt">
       <PackagePath>Common\ReadMe.txt</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Development\MyOwnWords.WP\MyOwnWords.WP\SQL files\vw_mowlist.sql">
+      <PackagePath>SQL files\vw_mowlist.sql</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Development\MyOwnWords.WP\MyOwnWords.WP\DataModel\SampleData.json">
       <PackagePath>DataModel\SampleData.json</PackagePath>
     </AppxPackagedFile>
